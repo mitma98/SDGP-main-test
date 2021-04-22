@@ -1,0 +1,69 @@
+<body style="padding: 0px;background-color: black; overflow: hidden;">
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px;"><app-sidebar></app-sidebar></div>
+
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+  <h2 style=" height:20px; padding-top: 15px;padding-left:2%;"> <span style='font-size:26px;'>&#9900;</span> Supplier Information</h2>
+</div>
+
+  <!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;overflow: scroll;">
+
+  <div class="col-4" style="padding-left: 5%; height: 250px;">
+    <h2>New SupplierForm</h2>
+    <form action="/action_page.php">
+      <label for="fname">Supplier Name :</label>
+      <input type="text" id="fname" name="firstname" [(ngModel)] = "supplierName">
+      <label for="lname">Material Name:</label>
+      <input type="text" id="lname" name="lastname" [(ngModel)] = "rawMat">
+    </form>
+  </div>
+  <div class="col-4" style="padding-left: 5%; height: 250px;">
+    <form action="/action_page.php" style="padding-top: 15%;">
+      <label for="lname">Average Order Time</label>
+      <input type="text" id="fname" name="firstname" [(ngModel)] = "avgOrderTime">
+      <label for="lname">Material Unit Price: </label>
+      <input type="text" id="lname" name="lastname" [(ngModel)] = "pricePerUnit">
+    </form>
+  </div>
+
+  <div class="col-4" style="padding-left: 4%; height: 280px;">
+    <div style="height: 65.5%;">
+        <h3  style="padding-left: 25%;">Product Info</h3>
+        <p> Supplier Name : {{supplierName}} </p>
+        <p> Material name : {{rawMat}}</p>
+        <p> Average Order Time :{{avgOrderTime}} </p>
+        <p> Material Unit Price : {{pricePerUnit}}</p>
+    </div>
+
+    <form action="/action_page.php">
+      <input type="submit" value="Submit" (click) = "submitNewSupplier()">
+    </form>
+    
+  </div>
+
+    <div>
+      <h2>Supplier information Table</h2>
+      <h6>Supplier information Table table including data of suppliers</h6>
+      <nz-table #basicTable [nzData]="listOfDataSupplierInfo" style="padding-top: 1%;">   
+        <thead>
+          <tr>
+            <th>Supplier Name</th>
+            <th>Material Name</th>
+            <th>Average order Time </th>
+            <th>Material unit Price</th>
+             
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.sname}}</td>
+            <td>{{data.mname}}</td>
+            <td>{{data.avgOtime}} days</td>
+            <td>Rs.{{data.mUp}}</td>
+           
+        </tbody>
+      </nz-table>
+    </div>
+</div>
+</body>

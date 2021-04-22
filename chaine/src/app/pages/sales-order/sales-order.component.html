@@ -1,0 +1,76 @@
+<body style="padding: 0px;background-color: black; overflow: hidden;">
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px;"><app-sidebar></app-sidebar></div>
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+  <h2 style=" height:20px; padding-top: 15px;padding-left:2%;"> <span style='font-size:26px;'>&#9900;</span> Sales Order</h2>
+</div>
+<!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;overflow: scroll;">
+
+  <div class="col-4" style="padding-left: 5%; height: 320px;">
+    <h2>Sales Order Form</h2>
+    <form action="/action_page.php">
+      <label for="fname">Customer name :</label>
+      <input type="text" [(ngModel)]="customername" id="fname"name="firstname" >
+      <label for="lname">Product Name :</label>
+      <input type="text"  [(ngModel)]="productname" id="lname" name="firstname" >
+      <label for="fname">Delivery Address :</label>
+      <input type="text"  [(ngModel)]="deliveryaddress"id="fname"name="firstname" >
+    </form>
+  </div>
+  <div class="col-4" style="padding-left: 5%; height: 320px;">
+    <form action="/action_page.php" style="padding-top: 15%;">
+      <label for="lname">Quantity :</label>
+      <input type="text" [(ngModel)]="qty" id="lname" name="firstname">
+      <label for="lname">Order Date : </label>
+      <input type="text" [(ngModel)]="orderdate"  id="lname" name="firstname" >
+    </form>
+  </div>
+
+  <div class="col-4" style="padding-left: 4%; height: 400px;">
+    <div style="height: 65.5%;">
+        <h3  style="padding-left: 25%;">Po Info</h3>
+        <p> Customer name : </p>
+        <p> Product Name :  </p>
+        <p> Order Date :  </p>
+        <p> Quantity : </p>
+        <p> Delivery Address :  </p>
+    </div>
+
+    <form action="/action_page.php">
+      <input type="submit" value="Submit" (click)="submitForm()">
+    </form>
+    
+  </div>
+
+   <div>
+    <h2>Sales order Table</h2>
+    <h6>These are the sales orders for the month </h6>
+    <nz-table #basicTable [nzData]="listOfDataSalesOrder" style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Customer name</th>
+          <th>Product name</th>
+          <th>Qty </th>
+          <th>Delivery Address</th>
+          <th>Order Id</th>
+          <th>Order Date</th>
+          <th>Average Delivery time</th>
+          <th>Total Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.cname}}<button (click)="confirmProductionOrder(data.oid)" >Confirm</button></td>
+          <td>{{data.pname}}</td>
+          <td>{{data.qty}}</td>
+          <td>{{data.daddress}}</td>
+          <td>{{data.oid}}</td>
+          <td>{{data.odate}}</td>
+          <td>{{data.adtime}}</td>
+          <td>{{data.totalCost}}</td>
+      </tbody>
+    </nz-table>
+  </div>
+  </div>
+</body>

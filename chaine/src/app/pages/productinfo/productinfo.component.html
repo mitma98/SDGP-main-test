@@ -1,0 +1,78 @@
+<body style="padding: 0px;background-color: black; overflow: hidden;">
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px;"><app-sidebar></app-sidebar></div>
+
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+  <h2 style=" height:20px; padding-top: 15px;padding-left:2%;"> <span style='font-size:26px;'>&#9900;</span> Product information</h2>
+</div>
+
+  <!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;overflow: scroll;">
+
+    <div class="col-4" style="padding-left: 5%; height: 240px;">
+        <h2>New Product Form</h2>
+        <form action="/action_page.php">
+          <label for="fname">Product Name :</label>
+          <input type="text" id="fname" [(ngModel)]="Productname" name="firstname" >
+          <label for="lname">Raw Materials:</label>
+          <input type="text" id="lname" [(ngModel)]="rawmaterils" name="lastname" >
+          
+        </form>
+      </div>
+      <div class="col-4" style="padding-left: 5%; height: 240px;">
+        <form action="/action_page.php" style="padding-top: 15%;">
+          <label for="fname">Production time :</label>
+          <input type="text" id="fname" [(ngModel)]="prodtime" name="firstname" >
+          <label for="lname">Raw Material Qty : </label>
+          <input type="text" id="lname" [(ngModel)]="rawmaterialqty" name="lastname">
+        </form>
+      </div>
+    
+      <div class="col-4" style="padding-left: 4%; height: 240px;">
+        <div style="height: 65.5%;">
+            <h3  style="padding-left: 25%;">Product Info</h3>
+            <p> Product Name  : {{Productname}} </p>
+            <p> Production time : {{prodtime}} </p>
+            <p> Raw Material Qty : {{rawmaterialqty}} </p>
+        </div>
+    
+        <form action="/action_page.php">
+          <input type="submit" id="submitbtn" value="Submit" (click)="submitform()">
+        </form>
+        
+      </div>
+
+      <div>
+        <h2>Upload previous product infomation</h2>
+        <p>choose .csv file to add previous product information </p>
+        
+        <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"/>
+
+      </div> 
+  
+    <div>
+      <h2>Product information Table</h2>
+      <h6>This table includes info about data of Items made by the company</h6>
+      <nz-table #basicTable [nzData]="listOfDataPInfo" style="padding-top: 1%;">   
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Raw materials</th>
+            <th>Raw material Qty</th>
+            <th>Production time</th>
+            <th>Cost</th>
+             
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.pname}}</td>
+            <td>{{data.rmaterials}}</td>
+            <td>{{data.rmqty}}</td>
+            <td>{{data.ptime}}</td>
+            <td>{{data.unitCost}}</td>
+        </tbody>
+      </nz-table>
+    </div>
+</div>
+</body>
